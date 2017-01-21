@@ -2,7 +2,6 @@
 
 namespace AssemblyCSharp
 {
-	//TODO: rename
 	public enum ImpulseType
 	{
 		POLMONI,
