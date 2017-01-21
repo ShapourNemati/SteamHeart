@@ -62,16 +62,20 @@ public class WaveManager : MonoBehaviour {
 			currentBattuta++;
 			nextImpulseIndex = 0;
 			//Debug.Log ("CurrentBattuta: " + currentBattuta + " battutePerTrack[CurrentPattern]: " + battutePerTrack[currentPattern] + " accuracy: " + scoremng.getAccuracy(currentPattern));
-			if (currentBattuta == battutePerTrack [currentPattern] && scoremng.getAccuracy(currentPattern) >= successThreshold) {
+			if (currentBattuta == battutePerTrack [currentPattern] && scoremng.getAccuracy (currentPattern) >= successThreshold) {
 				currentPattern++;
 
 				GameObject.Find ("MusicManager").GetComponent<MusicManager> ().ChangeTrack (currentPattern);
 				//StartCoroutine ("ChangeTrack",3f);
 				// Debug.Log ("Cambio pattern. Nuovo pattern: " + patterns[currentPattern]);
 				currentBattuta = 0;
+			} else if (currentBattuta == battutePerTrack [currentPattern] && scoremng.getAccuracy (currentPattern) < successThreshold) {
+				GameObject.Find ("LivesManager").GetComponent<LivesManager> ().loseLife ();
+				scoremng.resetHits (currentPattern);
+				currentBattuta = 0;
 			}
 		}
-		//Debug.Log("impulso " + (nextImpulseIndex+1) + ", battuta " + (currentBattuta+1) + " del pattern " + currentPattern + " (" + battutePerTrack[currentPattern] + " battute)");
+		Debug.Log("impulso " + (nextImpulseIndex+1) + ", battuta " + (currentBattuta+1) + " del pattern " + currentPattern + " (" + battutePerTrack[currentPattern] + " battute)");
 
 		GameObject o;
 		if (currentPattern == maxImpulsesOnScreen) {
