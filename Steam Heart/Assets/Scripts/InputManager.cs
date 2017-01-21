@@ -17,14 +17,13 @@ public class InputManager : MonoBehaviour {
 	void Update () {
 		if (Input.GetMouseButtonDown (LMB) )
 		{
-			Debug.Log ("Premuto bottone");
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
 			RaycastHit hit;
-			//LayerMask.NameToLayer("Clickables")
 			int layerMask = 1 << 8;
 			Physics.Raycast (ray, out hit, MAX_DISTANCE, layerMask);
 			if (hit.transform != null) {
 				hit.transform.gameObject.GetComponent<Clickable> ().Clicked ();
+				Debug.Log ("Raycast hit");
 			} else {
 				Debug.Log ("No raycast hit");
 			}

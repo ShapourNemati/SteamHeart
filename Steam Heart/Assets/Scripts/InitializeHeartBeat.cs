@@ -20,21 +20,23 @@ public class InitializeHeartBeat : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		beatDuration += Time.deltaTime;
-		if (Input.GetButtonDown ("Beat")) {
+		if (Input.GetButtonDown ("Beat") && (currentBeats < NUMBER_OF_BEATS) ) {
+			
 			times [currentBeats] = beatDuration;
 			beatDuration = 0;
 			currentBeats++;
 			if (currentBeats == NUMBER_OF_BEATS) {
 				//Calcolo il tempo medio fra un battito e l'altro
-				int HeartBeatsRate = GetMean(times);
+				int HeartBeatsRate = (int) GetMean(times);
 				//THE END
+
 			}
 		}	
 	}
 
-	private int GetMean(int [] array)
+	private float GetMean(float [] array)
 	{
-		int total = 0;
+		float total = 0;
 		for (int i = 0; i < array.Length; i++) {
 			total += array [i];
 		}
