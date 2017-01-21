@@ -79,7 +79,7 @@ public class WaveManager : MonoBehaviour {
 		}
 
 		// Aggiorno la coda
-		for (int i = 0; i < impulsesQueue.Length - 2; i++) {
+		for (int i = 0; i < impulsesQueue.Length - 1; i++) {
 			impulsesQueue [i] = impulsesQueue [i + 1];
 		}
 		impulsesQueue [impulsesQueue.Length - 1] = o;

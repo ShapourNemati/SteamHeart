@@ -22,6 +22,6 @@ public class Organ : MonoBehaviour, Clickable {
 		//SFX
 		//ANIMATION
 		//PARTICLES
-		GameObject.Find ("WaveManager").GetComponent<WaveManager> ().OrganClickNotice (impulseType);
+		GameObject.Find ("ECGScreen").GetComponent<WaveManager> ().OrganClickNotice (impulseType);
 	}
 }

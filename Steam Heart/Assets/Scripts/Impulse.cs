@@ -29,7 +29,7 @@ public class Impulse : MonoBehaviour {
 		int maxImpulsesOnScreen = GameObject.Find("ECGScreen").GetComponent<ScreenProperties>().maxImpulsesOnScreen;
 		velocity = Vector3.left * screenWidth / maxImpulsesOnScreen * MusicHeartBeats / 60;
 		if (lifeSpan == 0) lifeSpan = (maxImpulsesOnScreen + 1) * 60.0f / MusicHeartBeats;
-		Debug.Log ("Lifespan = " + lifeSpan);
+		// Debug.Log ("Lifespan = " + lifeSpan);
 		lifeCounter = 0;
 		isConsumed = false;
 		// Resize:

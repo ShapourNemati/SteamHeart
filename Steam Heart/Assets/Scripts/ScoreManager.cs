@@ -29,7 +29,7 @@ public class ScoreManager : MonoBehaviour {
 	public void IncreaseScore()
 	{
 		currentHeartBeats++;
-		Debug.Log ("Increased score");
+		Debug.Log ("Increased score. " + currentHeartBeats);
 		if (currentHeartBeats == targetHeartBeats) {
 			//Winning routine
 			Debug.Log("BRAVOH.");
@@ -39,7 +39,7 @@ public class ScoreManager : MonoBehaviour {
 	public void DecreaseScore()
 	{
 		currentHeartBeats--;
-		Debug.Log ("Decreased score");
+		Debug.Log ("Decreased score. " + currentHeartBeats);
 		if (currentHeartBeats == lossTreshHold) {
 			//Losing routine
 			Debug.Log("MORTO.");
