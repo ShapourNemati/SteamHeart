@@ -35,8 +35,14 @@ public class WaveManager : MonoBehaviour {
 		currentPattern = 0;
 		nextPattern = 0;
 		nextImpulseIndex = 0;
+		SpawnStartingImpulses ();
 	}
-	
+
+	private void SpawnStartingImpulses()
+	{
+		// genera impulso vuoto. TODO serve il prefab
+	}
+
 	// TODO serve una coroutine per generare i primi maxImpulsesOnScreen impulsi.
 	// il resto viene generato da ImpulseDeathNotice.
 		

@@ -10,6 +10,7 @@ public class Impulse : MonoBehaviour {
 	// immagine TODO
 	// immagine spenta TODO
 	// BPM da raggiungere. Influenza velocità dell'impulso
+	[HideInInspector]
 	public int TargetHeartBeats;
 	// Punto di origine dell'onda. Dipende dalle dimensioni dell'immagine
 
