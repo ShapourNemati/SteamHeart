@@ -22,7 +22,6 @@ public class Impulse : MonoBehaviour {
 	private bool isConsumed;
 
 	void Awake() {
-		Debug.Log ("WHAT.");
 		ecgscreen = GameObject.Find("ECGScreen");
 		scoremng = GameObject.Find ("ScoreManager").GetComponent<ScoreManager> ();
 
