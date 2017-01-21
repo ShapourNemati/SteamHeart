@@ -22,6 +22,7 @@ public class ScoreManager : MonoBehaviour {
 		currentDuration = 0;
 		totalImpulses = 0;
 		correctImpulses = 0;
+		textScore.GetComponent<Text> ().text = "Score: " + currentHeartBeats + "/" + targetHeartBeats;
 	}
 	
 	// Update is called once per frame
