@@ -58,6 +58,9 @@ public class WaveManager : MonoBehaviour {
 			//Debug.Log ("CurrentBattuta: " + currentBattuta + " battutePerTrack[CurrentPattern]: " + battutePerTrack[currentPattern] + " accuracy: " + scoremng.getAccuracy(currentPattern));
 			if (currentBattuta == battutePerTrack [currentPattern] && scoremng.getAccuracy(currentPattern) >= successThreshold) {
 				currentPattern++;
+
+				GameObject.Find ("MusicManager").GetComponent<MusicManager> ().ChangeTrack (currentPattern);
+				//StartCoroutine ("ChangeTrack",3f);
 				// Debug.Log ("Cambio pattern. Nuovo pattern: " + patterns[currentPattern]);
 				currentBattuta = 0;
 			}
@@ -95,4 +98,9 @@ public class WaveManager : MonoBehaviour {
 	public void OrganClickNotice(ImpulseType clickedType) {
 		impulsesQueue [0].GetComponent<Impulse> ().resolveImpulse (clickedType, currentPattern);
 	}
+	/*
+	IEnumerator ChangeTrack(float waitTime)
+	{
+		yield return new WaitForSeconds (waitTime);
+	}*/
 }
