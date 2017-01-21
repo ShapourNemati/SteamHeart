@@ -7,15 +7,12 @@ public class Impulse : MonoBehaviour {
 	
 	public ImpulseType type;
 
-	// immagine TODO
-	// immagine spenta TODO
-	// BPM da raggiungere. Influenza velocità dell'impulso
 	private int MusicHeartBeats = 80;
-	// Punto di origine dell'onda. Dipende dalle dimensioni dell'immagine
 
 	private GameObject ecgscreen;
 	private ScoreManager scoremng;
 	private Vector3 velocity;
+
 	public float lifeSpan = 0;
 	private float lifeCounter;
 
@@ -32,23 +29,7 @@ public class Impulse : MonoBehaviour {
 		// Debug.Log ("Lifespan = " + lifeSpan);
 		lifeCounter = 0;
 		isConsumed = false;
-		// Resize:
-
 	}
-
-//	void Start () {
-//		Debug.Log ("WHAT.");
-//		ecgscreen = GameObject.Find("ECGScreen");
-//		scoremng = GameObject.Find ("ScoreManager").GetComponent<ScoreManager> ();
-//
-//		float screenWidth = GameObject.Find("ECGScreen").GetComponent<ScreenProperties>().width;
-//		int maxImpulsesOnScreen = GameObject.Find("ECGScreen").GetComponent<ScreenProperties>().maxImpulsesOnScreen;
-//		velocity = Vector3.left * screenWidth / maxImpulsesOnScreen * MusicHeartBeats / 60;
-//		lifeSpan = (maxImpulsesOnScreen + 1) * 60 / MusicHeartBeats;
-//		Debug.Log ("Lifespan = " + lifeSpan);
-//		lifeCounter = 0;
-//		isConsumed = false;
-//	}
 
 	void Update () {
 		transform.position = transform.position + velocity*Time.deltaTime;
