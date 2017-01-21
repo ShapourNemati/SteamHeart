@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using AssemblyCSharp;
 
 public class Impulse : MonoBehaviour {
 
@@ -21,7 +22,7 @@ public class Impulse : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		// Normalizzare in base alla dimensione dello schermo
-		GameObject screen = GameObject.FindGameObjectWithTag("Screen");
+		GameObject screen = GameObject.Find("WaveScreen");
 		float screenWidth; // estrapola screen width
 		int maxImpulsesOnScreen; // estrapola massimi impulsi visualizzati a schermo
 		velocity = Vector3.left * screenWidth / maxImpulsesOnScreen * bpm / 60;
