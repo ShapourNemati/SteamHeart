@@ -104,6 +104,8 @@ public class WaveManager : MonoBehaviour {
 			}
 			impulsesQueue [impulsesQueue.Length - 1] = o;
 		}
+
+
 	}
 
 	// Esclude void e cuore

@@ -59,6 +59,7 @@ public class Impulse : MonoBehaviour {
 			} else {
 				// qualche feedback visivo non sarebbe male TODO
 				scoremng.DecreaseScore ();
+				Consume ();
 			}
 		} else {
 			// anche qui, feedback visivo pls TODO
