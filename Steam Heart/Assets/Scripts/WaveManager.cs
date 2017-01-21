@@ -6,7 +6,7 @@ using System;
 
 public class WaveManager : MonoBehaviour {
 
-	public ScoreManager scoremng;
+	private ScoreManager scoremng;
 
 	private Impulse[] impulseSequence;
 	/* Number of patterns = maxImpulsesOnScreen.
@@ -14,7 +14,11 @@ public class WaveManager : MonoBehaviour {
 	 * Number of symbols per pattern = maxImpulsesOnScreen */
 	public string[] patterns;
 
+	public GameObject[] impulses;
+
 	private int maxImpulsesOnScreen;
+	private Vector3 spawnPoint;
+	private float impulseWidth;
 	// indice del pattern corrente
 	private int currentPattern;
 	// indice del simbolo del pattern corrente
@@ -26,12 +30,15 @@ public class WaveManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		scoremng = GameObject.Find ("ScoreManager").GetComponent<ScoreManager> ();
-		maxImpulsesOnScreen = ScreenProperties.maxImpulsesOnScreen;
+		maxImpulsesOnScreen = GameObject.Find("ECGScreen").GetComponent<ScreenProperties>().maxImpulsesOnScreen;
+		spawnPoint = GameObject.Find("ECGScreen").GetComponent<ScreenProperties>().getInpulseSpawnPoint();
+		impulseWidth = GameObject.Find("ECGScreen").GetComponent<ScreenProperties>().impulseWidth;
 		if (patterns.Length != maxImpulsesOnScreen) {
 			Debug.Log ("NUMERO DI PATTERN ERRATO!");
 		}
-		// Riempie lo screen di maxImpulsesOnScreen impulsi vuoti TODO
-		// inizializza currentImpulse con il primo dei vuoti.
+		if (impulses.Length != Enum.GetNames (typeof(ImpulseType)).Length) {
+			Debug.Log ("MANCANO DEGLI IMPULSI!");
+		}
 		currentPattern = 0;
 		nextPattern = 0;
 		nextImpulseIndex = 0;
@@ -40,7 +47,12 @@ public class WaveManager : MonoBehaviour {
 
 	private void SpawnStartingImpulses()
 	{
-		// genera impulso vuoto. TODO serve il prefab
+		for (int i = 0; i < maxImpulsesOnScreen + 1; i++) {
+			GameObject o = GameObject.Instantiate (impulses[impulses.Length-1],spawnPoint,Quaternion.Euler(new Vector3(90,0,0)));
+			o.transform.position = o.transform.position + i * impulseWidth * Vector3.left;
+			o.GetComponent<Impulse> ().TargetHeartBeats = scoremng.targetHeartBeats;
+			// TODO resize impulse
+		}
 	}
 
 	// TODO serve una coroutine per generare i primi maxImpulsesOnScreen impulsi.
