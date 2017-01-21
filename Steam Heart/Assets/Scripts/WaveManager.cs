@@ -90,7 +90,7 @@ public class WaveManager : MonoBehaviour {
 	}
 
 	private int randomInt() {
-		return UnityEngine.Random.Range (1, Enum.GetNames (typeof(ImpulseType)).Length - 1);
+		return UnityEngine.Random.Range (0, Enum.GetNames (typeof(ImpulseType)).Length - 1);
 	}
 
 	// se non serve la togliamo
