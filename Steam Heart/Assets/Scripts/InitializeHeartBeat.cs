@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class InitializeHeartBeat : MonoBehaviour {
 
+	public GameObject GamePhase, InitPhase, GamePhaseUI, InitPhaseUI ;
+
 	public int NUMBER_OF_BEATS = 5;
 	private int currentBeats;
 
@@ -29,7 +31,10 @@ public class InitializeHeartBeat : MonoBehaviour {
 				//Calcolo il tempo medio fra un battito e l'altro
 				int HeartBeatsRate = (int) GetMean(times);
 				//THE END
-
+				GamePhase.SetActive(true);
+				GamePhaseUI.SetActive(true);
+				InitPhaseUI.SetActive(false);
+				InitPhase.SetActive(false);
 			}
 		}	
 	}

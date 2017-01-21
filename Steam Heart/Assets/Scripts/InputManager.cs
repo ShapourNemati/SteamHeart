@@ -10,7 +10,7 @@ public class InputManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		Debug.Log ("Started");
 	}
 
 	// Update is called once per frame
