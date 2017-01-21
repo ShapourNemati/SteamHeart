@@ -8,6 +8,7 @@ namespace AssemblyCSharp
 		INTESTINO,
 		STOMACO,
 		FEGATO,
+		CUORE,
 		VOID
 	}
 }

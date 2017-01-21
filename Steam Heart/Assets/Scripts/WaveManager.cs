@@ -21,12 +21,16 @@ public class WaveManager : MonoBehaviour {
 	private int maxImpulsesOnScreen;
 	private Vector3 spawnPoint;
 	// indice del pattern corrente
-	private int currentPattern;
+	[HideInInspector]
+	public int currentPattern;
 	// indice del simbolo del pattern corrente
 	private int nextImpulseIndex;
 	private int currentBattuta;
 
 	public float successThreshold = 0;
+	public int voidBeforeHeart = 4;
+	private int voidCounter;
+	private bool heartSpawned;
 
 	void Start () {
 		scoremng = GameObject.Find ("ScoreManager").GetComponent<ScoreManager> ();
@@ -48,6 +52,8 @@ public class WaveManager : MonoBehaviour {
 		currentPattern = 0;
 		currentBattuta = 0;
 		nextImpulseIndex = 0;
+		voidCounter = 0;
+		heartSpawned = false;
 	}
 		
 	private void generateImpulse() {
@@ -67,11 +73,21 @@ public class WaveManager : MonoBehaviour {
 		}
 		//Debug.Log("impulso " + (nextImpulseIndex+1) + ", battuta " + (currentBattuta+1) + " del pattern " + currentPattern + " (" + battutePerTrack[currentPattern] + " battute)");
 
+		GameObject o;
 		if (currentPattern == maxImpulsesOnScreen) {
-			// cuore TODO
+			// genero X impulsi vuoti, poi il cuore.
+			Debug.Log("voidCounter = " + voidCounter + ", total: " + voidBeforeHeart);
+			if (voidCounter >= voidBeforeHeart && !heartSpawned) {
+				Debug.Log ("Spawn heart");
+				o = GameObject.Instantiate (impulses [impulses.Length - 2], spawnPoint, Quaternion.Euler (new Vector3 (90, 0, 0)));
+				heartSpawned = true;
+			} else {
+				Debug.Log ("Spawn void");
+				o = GameObject.Instantiate (impulses [impulses.Length - 1], spawnPoint, Quaternion.Euler (new Vector3 (90, 0, 0)));
+				voidCounter++;
+			}
 		} else {
 			// quindi genero il prossimo impulso
-			GameObject o;
 			if (patterns [currentPattern].Substring (nextImpulseIndex).StartsWith ("0")) {
 				o = GameObject.Instantiate (impulses [impulses.Length - 1], spawnPoint, Quaternion.Euler (new Vector3 (90, 0, 0)));
 			} else {
@@ -87,8 +103,9 @@ public class WaveManager : MonoBehaviour {
 		}
 	}
 
+	// Esclude void e cuore
 	private int randomInt() {
-		return UnityEngine.Random.Range (0, Enum.GetNames (typeof(ImpulseType)).Length - 1);
+		return UnityEngine.Random.Range (0, Enum.GetNames (typeof(ImpulseType)).Length - 2);
 	}
 
 	public void ImpulseDeathNotice() {

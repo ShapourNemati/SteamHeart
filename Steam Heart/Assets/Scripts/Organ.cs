@@ -7,16 +7,6 @@ public class Organ : MonoBehaviour, Clickable {
 
 	public ImpulseType impulseType;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
 	public void Clicked()
 	{
 		//SFX
