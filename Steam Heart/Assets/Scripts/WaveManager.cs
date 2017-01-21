@@ -70,7 +70,6 @@ public class WaveManager : MonoBehaviour {
 				// Debug.Log ("Cambio pattern. Nuovo pattern: " + patterns[currentPattern]);
 				currentBattuta = 0;
 			} else if (currentBattuta == battutePerTrack [currentPattern] && scoremng.getAccuracy (currentPattern) < successThreshold) {
-				GameObject.Find ("LivesManager").GetComponent<LivesManager> ().loseLife ();
 				scoremng.resetHits (currentPattern);
 				currentBattuta = 0;
 			}
