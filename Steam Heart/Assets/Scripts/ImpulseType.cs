@@ -9,7 +9,8 @@ namespace AssemblyCSharp
 		TYPE2,
 		TYPE3,
 		TYPE4,
-		TYPE5
+		TYPE5,
+		VOID
 	}
 }
 
