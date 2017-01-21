@@ -17,7 +17,8 @@ public class Impulse : MonoBehaviour {
 	private GameObject ecgscreen;
 	private ScoreManager scoremng;
 	private Vector3 velocity;
-	private float lifeSpan;
+	[HideInInspector]
+	public float lifeSpan;
 	private float lifeCounter;
 
 	private bool isConsumed;
@@ -26,10 +27,8 @@ public class Impulse : MonoBehaviour {
 		ecgscreen = GameObject.Find("ECGScreen");
 		scoremng = GameObject.Find ("ScoreManager").GetComponent<ScoreManager> ();
 
-		float screenWidth = ScreenProperties.width;
-		int maxImpulsesOnScreen = ScreenProperties.maxImpulsesOnScreen;
-		// fare un debug, non mi fido.
-		Debug.Log(maxImpulsesOnScreen);
+		float screenWidth = GameObject.Find("ECGScreen").GetComponent<ScreenProperties>().width;
+		int maxImpulsesOnScreen = GameObject.Find("ECGScreen").GetComponent<ScreenProperties>().maxImpulsesOnScreen;
 		velocity = Vector3.left * screenWidth / maxImpulsesOnScreen * TargetHeartBeats / 60;
 		lifeSpan = (maxImpulsesOnScreen + 1) * 60 / TargetHeartBeats;
 		lifeCounter = 0;

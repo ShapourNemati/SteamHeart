@@ -29,9 +29,10 @@ public class InitializeHeartBeat : MonoBehaviour {
 			currentBeats++;
 			if (currentBeats == NUMBER_OF_BEATS) {
 				//Calcolo il tempo medio fra un battito e l'altro
-				int HeartBeatsRate = (int) GetMean(times);
+				int HeartBeatsRate = (int) (60 / GetMean(times));
 				//THE END
 				GamePhase.SetActive(true);
+				Debug.Log ("HBR " + HeartBeatsRate);
 				GameObject.Find ("ScoreManager").GetComponent<ScoreManager> ().targetHeartBeats = HeartBeatsRate;
 				GamePhaseUI.SetActive(true);
 				InitPhaseUI.SetActive(false);
