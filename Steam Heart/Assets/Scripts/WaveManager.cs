@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using AssemblyCSharp;
+using System;
 
 public class WaveManager : MonoBehaviour {
 
@@ -14,8 +15,11 @@ public class WaveManager : MonoBehaviour {
 	public string[] patterns;
 
 	private int maxImpulsesOnScreen;
+	// indice del pattern corrente
 	private int currentPattern;
-	private int currentPatternIndex;
+	// indice del simbolo del pattern corrente
+	private int nextImpulseIndex;
+	// indice del prossimo pattern
 	private int nextPattern;
 	private Impulse currentImpulse;
 
@@ -30,16 +34,13 @@ public class WaveManager : MonoBehaviour {
 		// inizializza currentImpulse con il primo dei vuoti.
 		currentPattern = 0;
 		nextPattern = 0;
-		currentPatternIndex = 0;
+		nextImpulseIndex = 0;
 	}
 	
 	// TODO serve una coroutine per generare i primi maxImpulsesOnScreen impulsi.
 	// il resto viene generato da ImpulseDeathNotice.
 		
 	private void generateImpulse() {
-		// in base allo score attuale e al pattern, genero robe. Se noto di dover cambiare pattern,
-		// prima termino quello corrente
-
 		// individuo il pattern successivo
 		int cbmp = scoremng.currentHeartBeats;
 		int tbmp = scoremng.targetHeartBeats;
@@ -49,21 +50,26 @@ public class WaveManager : MonoBehaviour {
 			float upperbound = (i + 1) / maxImpulsesOnScreen;
 			if (lowerbound <= ratio <= upperbound) {
 				nextPattern = i;
+				break;
 			}
 		}
 
 		// se il pattern precedente è finito, switcho, altrimenti attendo
-		if (currentPatternIndex == maxImpulsesOnScreen - 1) {
+		if (nextImpulseIndex == maxImpulsesOnScreen - 1) {
 			currentImpulse = 0;
 			currentImpulse = nextPattern;
 		}
 
 		// quindi genero il prossimo impulso
-
+		if (patterns [currentPattern].Substring (nextImpulseIndex).StartsWith ("0")) {
+			// genera impulso vuoto. TODO serve il prefab
+		} else {
+			// genera impulso casuale TODO serve il prefab
+		}
 	}
 
 	private ImpulseType randomImpulseType() {
-		return ImpulseType.TYPE1; // TODO randomize
+		int r = UnityEngine.Random.Range (1, Enum.GetNames (ImpulseType).Length);
 	}
 
 	// se non serve la togliamo
