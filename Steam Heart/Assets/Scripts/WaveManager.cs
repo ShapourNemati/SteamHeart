@@ -64,7 +64,7 @@ public class WaveManager : MonoBehaviour {
 		}
 
 		// se il pattern precedente è finito, switcho, altrimenti attendo
-		if (nextImpulseIndex == maxImpulsesOnScreen - 1) {
+		if (nextImpulseIndex == maxImpulsesOnScreen) {
 			nextImpulseIndex = 0;
 			nextImpulseIndex = nextPattern;
 		}
@@ -72,10 +72,11 @@ public class WaveManager : MonoBehaviour {
 		// quindi genero il prossimo impulso
 		GameObject o;
 		if (patterns [currentPattern].Substring (nextImpulseIndex).StartsWith ("0")) {
-			o = GameObject.Instantiate (impulses [randomInt ()], spawnPoint, Quaternion.Euler (new Vector3 (90, 0, 0)));
+			o = GameObject.Instantiate (impulses [impulses.Length-1], spawnPoint, Quaternion.Euler (new Vector3 (90, 0, 0)));
 		} else {
-			o = GameObject.Instantiate (impulses[impulses.Length-1],spawnPoint,Quaternion.Euler(new Vector3(90,0,0)));
+			o = GameObject.Instantiate (impulses[randomInt ()],spawnPoint,Quaternion.Euler(new Vector3(90,0,0)));
 		}
+		nextImpulseIndex++;
 
 		// Aggiorno la coda
 		for (int i = 0; i < impulsesQueue.Length - 1; i++) {
