@@ -5,7 +5,7 @@ using AssemblyCSharp;
 
 public class Impulse : MonoBehaviour {
 	
-	ImpulseType type;
+	public ImpulseType type;
 
 	// immagine TODO
 	// immagine spenta TODO
@@ -25,8 +25,10 @@ public class Impulse : MonoBehaviour {
 		ecgscreen = GameObject.Find("ECGScreen");
 		scoremng = GameObject.Find ("ScoreManager").GetComponent<ScoreManager> ();
 
-		float screenWidth = ecgscreen.GetComponent<ScreenProperties>().width;
-		int maxImpulsesOnScreen = ecgscreen.GetComponent<ScreenProperties> ().maxImpulsesOnScreen;
+		float screenWidth = ScreenProperties.width;
+		int maxImpulsesOnScreen = ScreenProperties.maxImpulsesOnScreen;
+		// fare un debug, non mi fido.
+		Debug.Log(maxImpulsesOnScreen);
 		velocity = Vector3.left * screenWidth / maxImpulsesOnScreen * TargetHeartBeats / 60;
 		lifeSpan = (maxImpulsesOnScreen + 1) * 60 / TargetHeartBeats;
 		lifeCounter = 0;

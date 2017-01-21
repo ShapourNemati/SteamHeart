@@ -26,8 +26,8 @@ public class WaveManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		scoremng = GameObject.Find ("ScoreManager").GetComponent<ScoreManager> ();
-		maxImpulsesOnScreen = GameObject.Find ("ECGScreen").GetComponent<ScreenProperties> ().maxImpulsesOnScreen;
-		if (patterns.GetLength () != maxImpulsesOnScreen) {
+		maxImpulsesOnScreen = ScreenProperties.maxImpulsesOnScreen;
+		if (patterns.Length != maxImpulsesOnScreen) {
 			Debug.Log ("NUMERO DI PATTERN ERRATO!");
 		}
 		// Riempie lo screen di maxImpulsesOnScreen impulsi vuoti TODO
@@ -48,7 +48,7 @@ public class WaveManager : MonoBehaviour {
 		for (int i = 0; i<maxImpulsesOnScreen; i++) {
 			float lowerbound = i / maxImpulsesOnScreen;
 			float upperbound = (i + 1) / maxImpulsesOnScreen;
-			if (lowerbound <= ratio <= upperbound) {
+			if (lowerbound <= ratio && ratio <= upperbound) {
 				nextPattern = i;
 				break;
 			}
@@ -56,8 +56,8 @@ public class WaveManager : MonoBehaviour {
 
 		// se il pattern precedente è finito, switcho, altrimenti attendo
 		if (nextImpulseIndex == maxImpulsesOnScreen - 1) {
-			currentImpulse = 0;
-			currentImpulse = nextPattern;
+			nextImpulseIndex = 0;
+			nextImpulseIndex = nextPattern;
 		}
 
 		// quindi genero il prossimo impulso
@@ -69,7 +69,8 @@ public class WaveManager : MonoBehaviour {
 	}
 
 	private ImpulseType randomImpulseType() {
-		int r = UnityEngine.Random.Range (1, Enum.GetNames (ImpulseType).Length);
+		int r = UnityEngine.Random.Range (1, Enum.GetNames (typeof(ImpulseType)).Length - 1);
+		return ImpulseType.VOID; // TODO
 	}
 
 	// se non serve la togliamo
