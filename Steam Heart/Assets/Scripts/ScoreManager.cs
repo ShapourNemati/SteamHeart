@@ -37,8 +37,8 @@ public class ScoreManager : MonoBehaviour {
 	void Update () {
 		currentDuration += Time.deltaTime;
 		if (currentDuration >= MAX_DURATION) {
-			//Losing routine
-			Debug.Log("The end.");
+			//Losing routine -- not really. Not anymore.
+			// Debug.Log("The end.");
 		}
 	}
 
