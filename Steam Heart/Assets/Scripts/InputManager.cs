@@ -20,7 +20,9 @@ public class InputManager : MonoBehaviour {
 			Debug.Log ("Premuto bottone");
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
 			RaycastHit hit;
-			Physics.Raycast (ray, out hit, MAX_DISTANCE);
+			//LayerMask.NameToLayer("Clickables")
+			int layerMask = 1 << 8;
+			Physics.Raycast (ray, out hit, MAX_DISTANCE, layerMask);
 			if (hit.transform != null) {
 				hit.transform.gameObject.GetComponent<Clickable> ().Clicked ();
 			} else {
