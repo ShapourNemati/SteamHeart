@@ -5,9 +5,10 @@ using UnityEngine;
 public class InitializeHeartBeat : MonoBehaviour {
 
 	public GameObject GamePhase, InitPhase, GamePhaseUI, InitPhaseUI ;
-
 	public int NUMBER_OF_BEATS = 5;
 	private int currentBeats;
+
+	public GameObject heartBeat;
 
 	private float[] times;
 	private float beatDuration;
@@ -23,7 +24,7 @@ public class InitializeHeartBeat : MonoBehaviour {
 	void Update () {
 		beatDuration += Time.deltaTime;
 		if (Input.GetButtonDown ("Beat") && (currentBeats < NUMBER_OF_BEATS) ) {
-			
+			GameObject.Instantiate (heartBeat);
 			times [currentBeats] = beatDuration;
 			beatDuration = 0;
 			currentBeats++;
