@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour {
 
@@ -11,9 +12,16 @@ public class ScoreManager : MonoBehaviour {
 	public float MAX_DURATION = 120;
 	public float currentDuration;
 
+	public int totalImpulses, correctImpulses;
+
+	public GameObject textScore;
+
 	// Use this for initialization
 	void Start () {
+		currentHeartBeats = 15;
 		currentDuration = 0;
+		totalImpulses = 0;
+		correctImpulses = 0;
 	}
 	
 	// Update is called once per frame
@@ -28,7 +36,10 @@ public class ScoreManager : MonoBehaviour {
 	public void IncreaseScore()
 	{
 		currentHeartBeats++;
-		Debug.Log ("Increased score. " + currentHeartBeats);
+		totalImpulses++;
+		correctImpulses++;
+		textScore.GetComponent<Text> ().text = "Score: " + currentHeartBeats + "/" + targetHeartBeats;
+		//Debug.Log ("Increased score. " + currentHeartBeats);
 		if (currentHeartBeats == targetHeartBeats) {
 			//Winning routine
 			Debug.Log("BRAVOH.");
@@ -38,6 +49,8 @@ public class ScoreManager : MonoBehaviour {
 	public void DecreaseScore()
 	{
 		currentHeartBeats--;
-		Debug.Log ("Decreased score. " + currentHeartBeats);
+		totalImpulses++;
+		textScore.GetComponent<Text> ().text = "Score: " + currentHeartBeats + "/" + targetHeartBeats;
+		//Debug.Log ("Decreased score. " + currentHeartBeats);
 	}
 }
