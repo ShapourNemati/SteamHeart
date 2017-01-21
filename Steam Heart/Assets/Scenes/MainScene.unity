@@ -1445,7 +1445,7 @@ MonoBehaviour:
   - {fileID: 1258803721}
   - {fileID: 1281850880}
   - {fileID: 1901507130}
-  battutePerTrack: 
+  battutePerTrack: 06000000060000000400000004000000
   successThreshold: 0
 --- !u!1 &1327818697
 GameObject:
@@ -1967,9 +1967,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundTracks:
   - {fileID: 1768799539}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1768799538}
+  - {fileID: 1768799537}
+  - {fileID: 1768799536}
 --- !u!1 &1800089576
 GameObject:
   m_ObjectHideFlags: 0

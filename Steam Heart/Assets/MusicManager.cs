@@ -20,6 +20,7 @@ public class MusicManager : MonoBehaviour {
 	{
 		soundTracks [n - 1].SetScheduledEndTime (3d);
 		soundTracks [n].SetScheduledStartTime(3d);
+		soundTracks [n].Play ();
 	}
 
 }
