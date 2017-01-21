@@ -32,6 +32,7 @@ public class InitializeHeartBeat : MonoBehaviour {
 				int HeartBeatsRate = (int) GetMean(times);
 				//THE END
 				GamePhase.SetActive(true);
+				GameObject.Find ("ScoreManager").GetComponent<ScoreManager> ().targetHeartBeats = HeartBeatsRate;
 				GamePhaseUI.SetActive(true);
 				InitPhaseUI.SetActive(false);
 				InitPhase.SetActive(false);
