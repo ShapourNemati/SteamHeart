@@ -1862,6 +1862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lives: 3
+  currentLives: 0
 --- !u!1 &1302085632
 GameObject:
   m_ObjectHideFlags: 0
