@@ -49,11 +49,12 @@ public class Impulse : MonoBehaviour {
 		isConsumed = true;
 	}
 
-	public void resolveImpulse(ImpulseType clickedType) {
+	public void resolveImpulse(ImpulseType clickedType, int round) {
 		if (!isConsumed) {
 			if (clickedType == type) {
 				// feedback visivo
 				scoremng.IncreaseScore ();
+				scoremng.IncreaseHits (round);
 				Consume();
 			} else {
 				// qualche feedback visivo non sarebbe male TODO

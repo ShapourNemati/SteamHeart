@@ -16,23 +16,22 @@ public class WaveManager : MonoBehaviour {
 
 	public GameObject[] impulses;
 	public GameObject[] impulsesQueue;
+	public int[] battutePerTrack; // Non posso usare Beat, o non capiamo più nulla çAç
 
 	private int maxImpulsesOnScreen;
 	private Vector3 spawnPoint;
-	private float impulseWidth;
 	// indice del pattern corrente
 	private int currentPattern;
 	// indice del simbolo del pattern corrente
 	private int nextImpulseIndex;
-	// indice del prossimo pattern
-	private int nextPattern;
-	private int tbmp;
+	private int currentBattuta;
+
+	public float successThreshold = 0;
 
 	void Start () {
 		scoremng = GameObject.Find ("ScoreManager").GetComponent<ScoreManager> ();
 		maxImpulsesOnScreen = GameObject.Find("ECGScreen").GetComponent<ScreenProperties>().maxImpulsesOnScreen;
 		spawnPoint = GameObject.Find("ECGScreen").GetComponent<ScreenProperties>().getInpulseSpawnPoint();
-		impulseWidth = GameObject.Find("ECGScreen").GetComponent<ScreenProperties>().impulseWidth;
 		// Debug.Log ("spawnPoint: " + spawnPoint);
 		if (patterns.Length != maxImpulsesOnScreen) {
 			Debug.Log ("NUMERO DI PATTERN ERRATO!");
@@ -43,48 +42,46 @@ public class WaveManager : MonoBehaviour {
 		if (impulsesQueue.Length != maxImpulsesOnScreen+1) {
 			Debug.Log ("CODA INZIALE FORMATA MALE!");
 		}
+		if (battutePerTrack.Length != maxImpulsesOnScreen) {
+			Debug.Log ("MANCANO DEI DATI SUI SOUNDTRACK!");
+		}
 		currentPattern = 0;
-		nextPattern = 0;
+		currentBattuta = 0;
 		nextImpulseIndex = 0;
-		tbmp = scoremng.targetHeartBeats;
 	}
 		
 	private void generateImpulse() {
-		// individuo il pattern successivo
-		int cbmp = scoremng.currentHeartBeats;
-		float ratio = (float) cbmp / tbmp;
-		Debug.Log ("comp%: " + ratio);
-		for (int i = 0; i<maxImpulsesOnScreen; i++) {
-			float lowerbound = (float) i / maxImpulsesOnScreen;
-			float upperbound = (float) (i + 1) / maxImpulsesOnScreen;
-			Debug.Log ("Lower bound: " + lowerbound + " - Upper Bound: " + upperbound);
-			if ( (lowerbound <= ratio) && (ratio <= upperbound) ) {
-				Debug.Log (i);
-				nextPattern = i;
-				break;
+		// conto le battute, quando arrivo al numero giusto, cambio pattern
+		if (nextImpulseIndex == maxImpulsesOnScreen && currentPattern < maxImpulsesOnScreen) {
+			currentBattuta++;
+			nextImpulseIndex = 0;
+			//Debug.Log ("CurrentBattuta: " + currentBattuta + " battutePerTrack[CurrentPattern]: " + battutePerTrack[currentPattern] + " accuracy: " + scoremng.getAccuracy(currentPattern));
+			if (currentBattuta == battutePerTrack [currentPattern] && scoremng.getAccuracy(currentPattern) >= successThreshold) {
+				currentPattern++;
+				// Debug.Log ("Cambio pattern. Nuovo pattern: " + patterns[currentPattern]);
+				currentBattuta = 0;
 			}
 		}
+		//Debug.Log("impulso " + (nextImpulseIndex+1) + ", battuta " + (currentBattuta+1) + " del pattern " + currentPattern + " (" + battutePerTrack[currentPattern] + " battute)");
 
-		// se il pattern precedente è finito, switcho, altrimenti attendo
-		if (nextImpulseIndex == maxImpulsesOnScreen) {
-			nextImpulseIndex = 0;
-			currentPattern = nextPattern;
-		}
-
-		// quindi genero il prossimo impulso
-		GameObject o;
-		if (patterns [currentPattern].Substring (nextImpulseIndex).StartsWith ("0")) {
-			o = GameObject.Instantiate (impulses [impulses.Length-1], spawnPoint, Quaternion.Euler (new Vector3 (90, 0, 0)));
+		if (currentPattern == maxImpulsesOnScreen) {
+			// cuore TODO
 		} else {
-			o = GameObject.Instantiate (impulses[randomInt ()],spawnPoint,Quaternion.Euler(new Vector3(90,0,0)));
-		}
-		nextImpulseIndex++;
+			// quindi genero il prossimo impulso
+			GameObject o;
+			if (patterns [currentPattern].Substring (nextImpulseIndex).StartsWith ("0")) {
+				o = GameObject.Instantiate (impulses [impulses.Length - 1], spawnPoint, Quaternion.Euler (new Vector3 (90, 0, 0)));
+			} else {
+				o = GameObject.Instantiate (impulses [randomInt ()], spawnPoint, Quaternion.Euler (new Vector3 (90, 0, 0)));
+			}
+			nextImpulseIndex++;
 
-		// Aggiorno la coda
-		for (int i = 0; i < impulsesQueue.Length - 1; i++) {
-			impulsesQueue [i] = impulsesQueue [i + 1];
+			// Aggiorno la coda
+			for (int i = 0; i < impulsesQueue.Length - 1; i++) {
+				impulsesQueue [i] = impulsesQueue [i + 1];
+			}
+			impulsesQueue [impulsesQueue.Length - 1] = o;
 		}
-		impulsesQueue [impulsesQueue.Length - 1] = o;
 	}
 
 	private int randomInt() {
@@ -96,6 +93,6 @@ public class WaveManager : MonoBehaviour {
 	}
 
 	public void OrganClickNotice(ImpulseType clickedType) {
-		impulsesQueue [0].GetComponent<Impulse> ().resolveImpulse (clickedType);
+		impulsesQueue [0].GetComponent<Impulse> ().resolveImpulse (clickedType, currentPattern);
 	}
 }

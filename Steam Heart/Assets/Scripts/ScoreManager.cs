@@ -15,12 +15,23 @@ public class ScoreManager : MonoBehaviour {
 
 	public GameObject textScore;
 
+	// Number of hits in a single round
+	[HideInInspector]
+	public int[] hits;
+
+	private int n;
+
 	void Start () {
 		currentHeartBeats = 15;
 		currentDuration = 0;
 		totalImpulses = 0;
 		correctImpulses = 0;
 		textScore.GetComponent<Text> ().text = "Score: " + currentHeartBeats + "/" + targetHeartBeats;
+		n = GameObject.Find ("ECGScreen").GetComponent<ScreenProperties> ().maxImpulsesOnScreen;
+		hits = new int[n];
+		for (int i = 0; i < n; i++) {
+			hits [i] = 0;
+		}
 	}
 
 	void Update () {
@@ -31,7 +42,7 @@ public class ScoreManager : MonoBehaviour {
 		}
 	}
 
-
+	// Da togliere? TODO
 	public void IncreaseScore()
 	{
 		currentHeartBeats++;
@@ -44,10 +55,26 @@ public class ScoreManager : MonoBehaviour {
 		}
 	}
 
+	// Da togliere? TODO
 	public void DecreaseScore()
 	{
 		currentHeartBeats--;
 		totalImpulses++;
 		textScore.GetComponent<Text> ().text = "Score: " + currentHeartBeats + "/" + targetHeartBeats;
+	}
+
+	public void IncreaseHits(int round) {
+		hits [round]++;
+		//Debug.Log ("hits (round" + round + ") = " + hits[round]);
+	}
+
+	public void resetHits(int round) {
+		hits [round] = 0;
+	}
+
+	public float getAccuracy(int round) {
+		int battute = GameObject.Find ("ECGScreen").GetComponent<WaveManager> ().battutePerTrack [round];
+		//Debug.Log ("Success is " + ((float) hits [round] / (battute * (round + 1))*100) + "%");
+		return (float) hits [round] / (battute * (round + 1));
 	}
 }

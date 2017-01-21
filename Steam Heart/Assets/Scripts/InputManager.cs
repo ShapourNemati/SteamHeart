@@ -23,9 +23,9 @@ public class InputManager : MonoBehaviour {
 			Physics.Raycast (ray, out hit, MAX_DISTANCE, layerMask);
 			if (hit.transform != null) {
 				hit.transform.gameObject.GetComponent<Clickable> ().Clicked ();
-				Debug.Log ("Raycast hit");
+				//Debug.Log ("Raycast hit");
 			} else {
-				Debug.Log ("No raycast hit");
+				//Debug.Log ("No raycast hit");
 			}
 		}
 	}
