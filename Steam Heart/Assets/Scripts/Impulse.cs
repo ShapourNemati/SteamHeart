@@ -19,25 +19,47 @@ public class Impulse : MonoBehaviour {
 	private float lifeSpan;
 	private float lifeCounter;
 
+	private bool isConsumed;
+
 	// Use this for initialization
 	void Start () {
 		ecgscreen = GameObject.Find("ECGScreen");
 		// Normalizzare in base alla dimensione dello schermo
 		float screenWidth = ecgscreen.GetComponent<ScreenProperties>().width;
-		int maxImpulsesOnScreen = GameObject.Find ("ECGScreen").GetComponent<ScreenProperties> ().maxImpulsesOnScreen;
+		int maxImpulsesOnScreen = ecgscreen.GetComponent<ScreenProperties> ().maxImpulsesOnScreen;
 		velocity = Vector3.left * screenWidth / maxImpulsesOnScreen * bpm / 60;
 		lifeSpan = (maxImpulsesOnScreen + 1) * 60 / bpm;
 		lifeCounter = 0;
+		isConsumed = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		transform.position = transform.position + velocity*Time.deltaTime;
 		if (lifeCounter >= lifeSpan) {
-			GameObject.Find ("ECGScreen").GetComponent <WaveManager>().ImpulseDeathNotice();
+			ecgscreen.GetComponent <WaveManager>().ImpulseDeathNotice();
 			GameObject.Destroy(this);
 		} else {
 			lifeCounter += Time.deltaTime;
+		}
+	}
+
+	private void Consume() {
+		// scolora l'impulso (cambia sprite oppure shader)
+		// aggiunge punti allo score manager
+		isConsumed = true;
+	}
+
+	public void resolveImpulse(ImpulseType clickedType) {
+		if (!isConsumed) {
+			if (clickedType == type) {
+				// aggiungi punti
+				Consume();
+			} else {
+				// togli punti
+			}
+		} else {
+			// togli punti
 		}
 	}
 }
