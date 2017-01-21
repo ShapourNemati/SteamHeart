@@ -4,36 +4,35 @@ using UnityEngine;
 using AssemblyCSharp;
 
 public class Impulse : MonoBehaviour {
-
-	// tipo di impulso. Enum?
+	
 	ImpulseType type;
 
-	// Configura pls
-	// immagine
+	// immagine TODO
+	// immagine spenta TODO
 	// BPM da raggiungere. Influenza velocità dell'impulso
-	public int bpm;
+	public int TargetHeartBeats;
 	// Punto di origine dell'onda. Dipende dalle dimensioni dell'immagine
 
 	private GameObject ecgscreen;
+	private ScoreManager scoremng;
 	private Vector3 velocity;
 	private float lifeSpan;
 	private float lifeCounter;
 
 	private bool isConsumed;
 
-	// Use this for initialization
 	void Start () {
 		ecgscreen = GameObject.Find("ECGScreen");
-		// Normalizzare in base alla dimensione dello schermo
+		scoremng = GameObject.Find ("ScoreManager").GetComponent<ScoreManager> ();
+
 		float screenWidth = ecgscreen.GetComponent<ScreenProperties>().width;
 		int maxImpulsesOnScreen = ecgscreen.GetComponent<ScreenProperties> ().maxImpulsesOnScreen;
-		velocity = Vector3.left * screenWidth / maxImpulsesOnScreen * bpm / 60;
-		lifeSpan = (maxImpulsesOnScreen + 1) * 60 / bpm;
+		velocity = Vector3.left * screenWidth / maxImpulsesOnScreen * TargetHeartBeats / 60;
+		lifeSpan = (maxImpulsesOnScreen + 1) * 60 / TargetHeartBeats;
 		lifeCounter = 0;
 		isConsumed = false;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		transform.position = transform.position + velocity*Time.deltaTime;
 		if (lifeCounter >= lifeSpan) {
@@ -45,21 +44,24 @@ public class Impulse : MonoBehaviour {
 	}
 
 	private void Consume() {
-		// scolora l'impulso (cambia sprite oppure shader)
-		// aggiunge punti allo score manager
+		// scolora l'impulso (cambia sprite oppure shader) TODO
 		isConsumed = true;
 	}
 
+	/* Regola: questo è l'unico metodo che tocca lo score manager! */
 	public void resolveImpulse(ImpulseType clickedType) {
 		if (!isConsumed) {
 			if (clickedType == type) {
-				// aggiungi punti
+				// feedback visivo
+				scoremng.IncreaseScore ();
 				Consume();
 			} else {
-				// togli punti
+				// qualche feedback visivo non sarebbe male TODO
+				scoremng.DecreaseScore ();
 			}
 		} else {
-			// togli punti
+			// anche qui, feedback visivo pls TODO
+			scoremng.DecreaseScore ();
 		}
 	}
 }

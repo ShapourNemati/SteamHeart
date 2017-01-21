@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ScreenProperties : MonoBehaviour {
 
-	public int maxImpulsesOnScreen;
-	public float width;
+	public const int maxImpulsesOnScreen = 1;
+	public const float width = 0;
 
 	// Dovrebbe anche avere un qualche riferimento per lo schermo
 	// tipo un punto. L'importante è che sia comodo per generare le onde.
+	// TODO !
 }
