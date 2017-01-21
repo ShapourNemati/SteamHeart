@@ -53,11 +53,14 @@ public class WaveManager : MonoBehaviour {
 	private void generateImpulse() {
 		// individuo il pattern successivo
 		int cbmp = scoremng.currentHeartBeats;
-		float ratio = cbmp / tbmp * 1.0f;
+		float ratio = (float) cbmp / tbmp;
+		Debug.Log ("comp%: " + ratio);
 		for (int i = 0; i<maxImpulsesOnScreen; i++) {
-			float lowerbound = i / maxImpulsesOnScreen;
-			float upperbound = (i + 1) / maxImpulsesOnScreen;
-			if (lowerbound <= ratio && ratio <= upperbound) {
+			float lowerbound = (float) i / maxImpulsesOnScreen;
+			float upperbound = (float) (i + 1) / maxImpulsesOnScreen;
+			Debug.Log ("Lower bound: " + lowerbound + " - Upper Bound: " + upperbound);
+			if ( (lowerbound <= ratio) && (ratio <= upperbound) ) {
+				Debug.Log (i);
 				nextPattern = i;
 				break;
 			}
@@ -66,9 +69,11 @@ public class WaveManager : MonoBehaviour {
 		// se il pattern precedente è finito, switcho, altrimenti attendo
 		if (nextImpulseIndex == maxImpulsesOnScreen) {
 			nextImpulseIndex = 0;
-			nextImpulseIndex = nextPattern;
+			currentPattern = nextPattern;
 		}
 
+		//Debug.Log (currentPattern);
+		//Debug.Log (nextPattern);
 		// quindi genero il prossimo impulso
 		GameObject o;
 		if (patterns [currentPattern].Substring (nextImpulseIndex).StartsWith ("0")) {
