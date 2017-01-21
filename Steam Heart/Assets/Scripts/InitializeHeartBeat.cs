@@ -43,7 +43,7 @@ public class InitializeHeartBeat : MonoBehaviour {
 	private float GetMean(float [] array)
 	{
 		float total = 0;
-		for (int i = 0; i < array.Length; i++) {
+		for (int i = 1; i < array.Length; i++) {
 			total += array [i];
 		}
 		return total / array.Length;
