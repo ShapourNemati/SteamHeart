@@ -64,5 +64,12 @@ public class Impulse : MonoBehaviour {
 			// anche qui, feedback visivo pls TODO
 			scoremng.DecreaseScore ();
 		}
+
+		/* Versione senza lo score: */
+//		if (!isConsumed && clickedType == type) {
+			// Feedback visivi
+//			scoremng.IncreaseHits ();
+//			Consume ();
+//		}
 	}
 }
