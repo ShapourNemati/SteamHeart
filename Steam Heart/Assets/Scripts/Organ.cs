@@ -5,7 +5,7 @@ using AssemblyCSharp;
 
 public class Organ : MonoBehaviour, Clickable {
 
-	private ImpulseType impulseType;
+	public ImpulseType impulseType;
 
 	// Use this for initialization
 	void Start () {
