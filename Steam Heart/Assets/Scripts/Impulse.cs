@@ -61,7 +61,6 @@ public class Impulse : MonoBehaviour {
 	}
 
 	private void Consume() {
-		// scolora l'impulso (cambia sprite oppure shader) TODO
 		isConsumed = true;
 	}
 

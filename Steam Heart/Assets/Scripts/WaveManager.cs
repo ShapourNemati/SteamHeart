@@ -15,6 +15,7 @@ public class WaveManager : MonoBehaviour {
 	public string[] patterns;
 
 	public GameObject[] impulses;
+	public GameObject[] impulsesQueue;
 
 	private int maxImpulsesOnScreen;
 	private Vector3 spawnPoint;
@@ -25,7 +26,6 @@ public class WaveManager : MonoBehaviour {
 	private int nextImpulseIndex;
 	// indice del prossimo pattern
 	private int nextPattern;
-	private Impulse currentImpulse;
 	private int tbmp;
 
 	// Use this for initialization
@@ -40,6 +40,9 @@ public class WaveManager : MonoBehaviour {
 		}
 		if (impulses.Length != Enum.GetNames (typeof(ImpulseType)).Length) {
 			Debug.Log ("MANCANO DEGLI IMPULSI!");
+		}
+		if (impulsesQueue.Length != maxImpulsesOnScreen+1) {
+			Debug.Log ("CODA INZIALE FORMATA MALE!");
 		}
 		currentPattern = 0;
 		nextPattern = 0;
@@ -67,12 +70,19 @@ public class WaveManager : MonoBehaviour {
 		}
 
 		// quindi genero il prossimo impulso
+		GameObject o;
 		if (patterns [currentPattern].Substring (nextImpulseIndex).StartsWith ("0")) {
-			GameObject o = GameObject.Instantiate (impulses [randomInt ()], spawnPoint, Quaternion.Euler (new Vector3 (90, 0, 0)));
+			o = GameObject.Instantiate (impulses [randomInt ()], spawnPoint, Quaternion.Euler (new Vector3 (90, 0, 0)));
 		} else {
 			// genera impulso casuale TODO serve il prefab
-			GameObject o = GameObject.Instantiate (impulses[impulses.Length-1],spawnPoint,Quaternion.Euler(new Vector3(90,0,0)));
+			o = GameObject.Instantiate (impulses[impulses.Length-1],spawnPoint,Quaternion.Euler(new Vector3(90,0,0)));
 		}
+
+		// Aggiorno la coda
+		for (int i = 0; i < impulsesQueue.Length - 2; i++) {
+			impulsesQueue [i] = impulsesQueue [i + 1];
+		}
+		impulsesQueue [impulsesQueue.Length - 1] = o;
 	}
 
 	private int randomInt() {
@@ -81,11 +91,10 @@ public class WaveManager : MonoBehaviour {
 
 	// se non serve la togliamo
 	public void ImpulseDeathNotice() {
-		// aggiorna currentImpulse TODO
 		generateImpulse ();
 	}
 
 	public void OrganClickNotice(ImpulseType clickedType) {
-	
+		impulsesQueue [0].GetComponent<Impulse> ().resolveImpulse (clickedType);
 	}
 }
