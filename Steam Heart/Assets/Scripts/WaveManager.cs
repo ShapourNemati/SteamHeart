@@ -20,7 +20,7 @@ public class WaveManager : MonoBehaviour {
 	}
 
 	private ImpulseType randomImpulseType() {
-
+		return ImpulseType.TYPE1; // TODO randomize
 	}
 
 	// se non serve la togliamo

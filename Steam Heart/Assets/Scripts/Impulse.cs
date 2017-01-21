@@ -23,8 +23,8 @@ public class Impulse : MonoBehaviour {
 	void Start () {
 		// Normalizzare in base alla dimensione dello schermo
 		GameObject screen = GameObject.Find("WaveScreen");
-		float screenWidth; // estrapola screen width
-		int maxImpulsesOnScreen; // estrapola massimi impulsi visualizzati a schermo
+		float screenWidth = 0; // estrapola screen width TODO
+		int maxImpulsesOnScreen = 1; // estrapola massimi impulsi visualizzati a schermo TODO
 		velocity = Vector3.left * screenWidth / maxImpulsesOnScreen * bpm / 60;
 		lifeSpan = (maxImpulsesOnScreen + 1) * 60 / bpm;
 		lifeCounter = 0;
@@ -32,7 +32,7 @@ public class Impulse : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform += velocity*Time.deltaTime;
+		transform.position = transform.position + velocity*Time.deltaTime;
 		if (lifeCounter >= lifeSpan) {
 			// Notify WaveManager TODO
 			GameObject.Destroy(this);
