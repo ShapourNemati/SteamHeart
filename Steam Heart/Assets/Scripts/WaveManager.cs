@@ -33,7 +33,7 @@ public class WaveManager : MonoBehaviour {
 		maxImpulsesOnScreen = GameObject.Find("ECGScreen").GetComponent<ScreenProperties>().maxImpulsesOnScreen;
 		spawnPoint = GameObject.Find("ECGScreen").GetComponent<ScreenProperties>().getInpulseSpawnPoint();
 		impulseWidth = GameObject.Find("ECGScreen").GetComponent<ScreenProperties>().impulseWidth;
-		Debug.Log ("spawnPoint: " + spawnPoint);
+		// Debug.Log ("spawnPoint: " + spawnPoint);
 		if (patterns.Length != maxImpulsesOnScreen) {
 			Debug.Log ("NUMERO DI PATTERN ERRATO!");
 		}
@@ -71,8 +71,6 @@ public class WaveManager : MonoBehaviour {
 			currentPattern = nextPattern;
 		}
 
-		//Debug.Log (currentPattern);
-		//Debug.Log (nextPattern);
 		// quindi genero il prossimo impulso
 		GameObject o;
 		if (patterns [currentPattern].Substring (nextImpulseIndex).StartsWith ("0")) {
@@ -93,7 +91,6 @@ public class WaveManager : MonoBehaviour {
 		return UnityEngine.Random.Range (0, Enum.GetNames (typeof(ImpulseType)).Length - 1);
 	}
 
-	// se non serve la togliamo
 	public void ImpulseDeathNotice() {
 		generateImpulse ();
 	}

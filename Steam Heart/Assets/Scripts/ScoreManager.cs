@@ -8,7 +8,6 @@ public class ScoreManager : MonoBehaviour {
 	public int targetHeartBeats;
 	public int currentHeartBeats;
 
-	//TODO: find a number, 2 minutes so far
 	public float MAX_DURATION = 120;
 	public float currentDuration;
 
@@ -16,7 +15,6 @@ public class ScoreManager : MonoBehaviour {
 
 	public GameObject textScore;
 
-	// Use this for initialization
 	void Start () {
 		currentHeartBeats = 15;
 		currentDuration = 0;
@@ -24,12 +22,12 @@ public class ScoreManager : MonoBehaviour {
 		correctImpulses = 0;
 		textScore.GetComponent<Text> ().text = "Score: " + currentHeartBeats + "/" + targetHeartBeats;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		currentDuration += Time.deltaTime;
 		if (currentDuration >= MAX_DURATION) {
 			//Losing routine
+			Debug.Log("The end.");
 		}
 	}
 
@@ -40,7 +38,6 @@ public class ScoreManager : MonoBehaviour {
 		totalImpulses++;
 		correctImpulses++;
 		textScore.GetComponent<Text> ().text = "Score: " + currentHeartBeats + "/" + targetHeartBeats;
-		//Debug.Log ("Increased score. " + currentHeartBeats);
 		if (currentHeartBeats == targetHeartBeats) {
 			//Winning routine
 			Debug.Log("BRAVOH.");
@@ -52,6 +49,5 @@ public class ScoreManager : MonoBehaviour {
 		currentHeartBeats--;
 		totalImpulses++;
 		textScore.GetComponent<Text> ().text = "Score: " + currentHeartBeats + "/" + targetHeartBeats;
-		//Debug.Log ("Decreased score. " + currentHeartBeats);
 	}
 }
