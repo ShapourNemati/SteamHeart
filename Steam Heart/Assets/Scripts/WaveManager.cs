@@ -33,6 +33,7 @@ public class WaveManager : MonoBehaviour {
 		maxImpulsesOnScreen = GameObject.Find("ECGScreen").GetComponent<ScreenProperties>().maxImpulsesOnScreen;
 		spawnPoint = GameObject.Find("ECGScreen").GetComponent<ScreenProperties>().getInpulseSpawnPoint();
 		impulseWidth = GameObject.Find("ECGScreen").GetComponent<ScreenProperties>().impulseWidth;
+		Debug.Log ("spawnPoint: " + spawnPoint);
 		if (patterns.Length != maxImpulsesOnScreen) {
 			Debug.Log ("NUMERO DI PATTERN ERRATO!");
 		}
@@ -42,18 +43,20 @@ public class WaveManager : MonoBehaviour {
 		currentPattern = 0;
 		nextPattern = 0;
 		nextImpulseIndex = 0;
-		SpawnStartingImpulses ();
+		// SpawnStartingImpulses (); TODO cancella
 	}
 
-	private void SpawnStartingImpulses()
-	{
-		for (int i = 0; i < maxImpulsesOnScreen + 1; i++) {
-			GameObject o = GameObject.Instantiate (impulses[impulses.Length-1],spawnPoint,Quaternion.Euler(new Vector3(90,0,0)));
-			o.transform.position = o.transform.position + i * impulseWidth * Vector3.left;
-			o.GetComponent<Impulse> ().TargetHeartBeats = scoremng.targetHeartBeats;
-			// TODO resize impulse
-		}
-	}
+//	private void SpawnStartingImpulses()
+//	{
+//		for (int i = 0; i < maxImpulsesOnScreen + 1; i++) {
+//			GameObject o = GameObject.Instantiate (impulses[impulses.Length-1],spawnPoint,Quaternion.Euler(new Vector3(90,0,0)));
+//			o.transform.position = o.transform.position + i * impulseWidth * Vector3.left;
+//			Debug.Log("prima =" +o.GetComponent<Impulse> ().lifeSpan);
+//			o.GetComponent<Impulse> ().lifeSpan = o.GetComponent<Impulse> ().lifeSpan * (maxImpulsesOnScreen - i + 1) / (maxImpulsesOnScreen + 1);
+//			Debug.Log("dopo = "+ o.GetComponent<Impulse> ().lifeSpan); 
+//			// TODO resize impulse
+//		}
+//	}
 
 	// TODO serve una coroutine per generare i primi maxImpulsesOnScreen impulsi.
 	// il resto viene generato da ImpulseDeathNotice.
@@ -80,15 +83,15 @@ public class WaveManager : MonoBehaviour {
 
 		// quindi genero il prossimo impulso
 		if (patterns [currentPattern].Substring (nextImpulseIndex).StartsWith ("0")) {
-			// genera impulso vuoto. TODO serve il prefab
+			GameObject o = GameObject.Instantiate (impulses [randomInt ()], spawnPoint, Quaternion.Euler (new Vector3 (90, 0, 0)));
 		} else {
 			// genera impulso casuale TODO serve il prefab
+			GameObject o = GameObject.Instantiate (impulses[impulses.Length-1],spawnPoint,Quaternion.Euler(new Vector3(90,0,0)));
 		}
 	}
 
-	private ImpulseType randomImpulseType() {
-		int r = UnityEngine.Random.Range (1, Enum.GetNames (typeof(ImpulseType)).Length - 1);
-		return ImpulseType.VOID; // TODO
+	private int randomInt() {
+		return UnityEngine.Random.Range (1, Enum.GetNames (typeof(ImpulseType)).Length - 1);
 	}
 
 	// se non serve la togliamo

@@ -9,7 +9,6 @@ namespace AssemblyCSharp
 		INTESTINO,
 		STOMACO,
 		FEGATO,
-		TYPE5,
 		VOID
 	}
 }

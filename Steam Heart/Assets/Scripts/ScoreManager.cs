@@ -39,6 +39,7 @@ public class ScoreManager : MonoBehaviour {
 		currentHeartBeats--;
 		if (currentHeartBeats == lossTreshHold) {
 			//Losing routine
+			Debug.Log("MORTO.");
 		}
 	}
 }
