@@ -13,18 +13,18 @@ public class Impulse : MonoBehaviour {
 	// BPM da raggiungere. Influenza velocità dell'impulso
 	public int bpm;
 	// Punto di origine dell'onda. Dipende dalle dimensioni dell'immagine
-	public Transform origin;
 
+	private GameObject ecgscreen;
 	private Vector3 velocity;
 	private float lifeSpan;
 	private float lifeCounter;
 
 	// Use this for initialization
 	void Start () {
+		ecgscreen = GameObject.Find("ECGScreen");
 		// Normalizzare in base alla dimensione dello schermo
-		GameObject screen = GameObject.Find("WaveScreen");
-		float screenWidth = 0; // estrapola screen width TODO
-		int maxImpulsesOnScreen = 1; // estrapola massimi impulsi visualizzati a schermo TODO
+		float screenWidth = ecgscreen.GetComponent<ScreenProperties>().width;
+		int maxImpulsesOnScreen = GameObject.Find ("ECGScreen").GetComponent<ScreenProperties> ().maxImpulsesOnScreen;
 		velocity = Vector3.left * screenWidth / maxImpulsesOnScreen * bpm / 60;
 		lifeSpan = (maxImpulsesOnScreen + 1) * 60 / bpm;
 		lifeCounter = 0;
@@ -34,7 +34,7 @@ public class Impulse : MonoBehaviour {
 	void Update () {
 		transform.position = transform.position + velocity*Time.deltaTime;
 		if (lifeCounter >= lifeSpan) {
-			// Notify WaveManager TODO
+			GameObject.Find ("ECGScreen").GetComponent <WaveManager>().ImpulseDeathNotice();
 			GameObject.Destroy(this);
 		} else {
 			lifeCounter += Time.deltaTime;
