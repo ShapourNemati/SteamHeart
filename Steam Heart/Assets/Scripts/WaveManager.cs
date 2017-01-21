@@ -28,7 +28,6 @@ public class WaveManager : MonoBehaviour {
 	private int nextPattern;
 	private int tbmp;
 
-	// Use this for initialization
 	void Start () {
 		scoremng = GameObject.Find ("ScoreManager").GetComponent<ScoreManager> ();
 		maxImpulsesOnScreen = GameObject.Find("ECGScreen").GetComponent<ScreenProperties>().maxImpulsesOnScreen;
