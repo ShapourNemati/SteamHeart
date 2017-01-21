@@ -54,6 +54,10 @@ public class Impulse : MonoBehaviour {
 		transform.position = transform.position + velocity*Time.deltaTime;
 		if (lifeCounter >= lifeSpan) {
 			ecgscreen.GetComponent <WaveManager>().ImpulseDeathNotice();
+			if (type != ImpulseType.VOID && !isConsumed) {
+				// feedback visivo pls TODO
+				scoremng.DecreaseScore ();
+			}
 			GameObject.Destroy(gameObject);
 		} else {
 			lifeCounter += Time.deltaTime;
@@ -64,7 +68,6 @@ public class Impulse : MonoBehaviour {
 		isConsumed = true;
 	}
 
-	/* Regola: questo è l'unico metodo che tocca lo score manager! */
 	public void resolveImpulse(ImpulseType clickedType) {
 		if (!isConsumed) {
 			if (clickedType == type) {

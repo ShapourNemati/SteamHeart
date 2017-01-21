@@ -74,7 +74,6 @@ public class WaveManager : MonoBehaviour {
 		if (patterns [currentPattern].Substring (nextImpulseIndex).StartsWith ("0")) {
 			o = GameObject.Instantiate (impulses [randomInt ()], spawnPoint, Quaternion.Euler (new Vector3 (90, 0, 0)));
 		} else {
-			// genera impulso casuale TODO serve il prefab
 			o = GameObject.Instantiate (impulses[impulses.Length-1],spawnPoint,Quaternion.Euler(new Vector3(90,0,0)));
 		}
 
