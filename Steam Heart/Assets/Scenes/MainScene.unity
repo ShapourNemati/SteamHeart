@@ -1036,7 +1036,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1216265822}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.89, y: 7.900236, z: -2.4507973}
+  m_LocalPosition: {x: 5.89, y: 7.900236, z: -5.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1281850881}
@@ -1178,7 +1178,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1302085632}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 7.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1976207083}
@@ -1196,7 +1196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxImpulsesOnScreen: 4
-  width: 400
+  width: 20
   impulseWidth: 0
 --- !u!23 &1302085635
 MeshRenderer:
@@ -1582,7 +1582,7 @@ Prefab:
     - target: {fileID: 114921584702011838, guid: 0a47b7c3a26b94a4fb697d2d1294c9a7,
         type: 2}
       propertyPath: lifeSpan
-      value: 3.75
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a47b7c3a26b94a4fb697d2d1294c9a7, type: 2}
@@ -1695,7 +1695,7 @@ Prefab:
     - target: {fileID: 114921584702011838, guid: 0a47b7c3a26b94a4fb697d2d1294c9a7,
         type: 2}
       propertyPath: lifeSpan
-      value: 3
+      value: 3.75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a47b7c3a26b94a4fb697d2d1294c9a7, type: 2}

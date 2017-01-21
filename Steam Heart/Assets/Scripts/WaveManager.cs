@@ -26,6 +26,7 @@ public class WaveManager : MonoBehaviour {
 	// indice del prossimo pattern
 	private int nextPattern;
 	private Impulse currentImpulse;
+	private int tbmp;
 
 	// Use this for initialization
 	void Start () {
@@ -43,28 +44,12 @@ public class WaveManager : MonoBehaviour {
 		currentPattern = 0;
 		nextPattern = 0;
 		nextImpulseIndex = 0;
-		// SpawnStartingImpulses (); TODO cancella
+		tbmp = scoremng.targetHeartBeats;
 	}
-
-//	private void SpawnStartingImpulses()
-//	{
-//		for (int i = 0; i < maxImpulsesOnScreen + 1; i++) {
-//			GameObject o = GameObject.Instantiate (impulses[impulses.Length-1],spawnPoint,Quaternion.Euler(new Vector3(90,0,0)));
-//			o.transform.position = o.transform.position + i * impulseWidth * Vector3.left;
-//			Debug.Log("prima =" +o.GetComponent<Impulse> ().lifeSpan);
-//			o.GetComponent<Impulse> ().lifeSpan = o.GetComponent<Impulse> ().lifeSpan * (maxImpulsesOnScreen - i + 1) / (maxImpulsesOnScreen + 1);
-//			Debug.Log("dopo = "+ o.GetComponent<Impulse> ().lifeSpan); 
-//			// TODO resize impulse
-//		}
-//	}
-
-	// TODO serve una coroutine per generare i primi maxImpulsesOnScreen impulsi.
-	// il resto viene generato da ImpulseDeathNotice.
 		
 	private void generateImpulse() {
 		// individuo il pattern successivo
 		int cbmp = scoremng.currentHeartBeats;
-		int tbmp = scoremng.targetHeartBeats;
 		float ratio = cbmp / tbmp * 1.0f;
 		for (int i = 0; i<maxImpulsesOnScreen; i++) {
 			float lowerbound = i / maxImpulsesOnScreen;
