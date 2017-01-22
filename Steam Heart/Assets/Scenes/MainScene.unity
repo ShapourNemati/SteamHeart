@@ -2194,7 +2194,8 @@ MonoBehaviour:
   - {fileID: 1228781748140180, guid: be9c25f3b881bdf4082656d29b435b56, type: 2}
   - {fileID: 1390759173868426, guid: bdd74ac5e83667247a961583b5598e31, type: 2}
   - {fileID: 1250894760595590, guid: ac3d019d4c825e9429464d4d973fe1c8, type: 2}
-  pattern: 00000001234500000
+  MusicHeartBeats: 80
+  pattern: 001010101
 --- !u!1 &1327818697
 GameObject:
   m_ObjectHideFlags: 0
@@ -2974,6 +2975,15 @@ Prefab:
     - target: {fileID: 4730439335277262, guid: 0a47b7c3a26b94a4fb697d2d1294c9a7, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114921584702011838, guid: 0a47b7c3a26b94a4fb697d2d1294c9a7,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1223140592639892, guid: 0a47b7c3a26b94a4fb697d2d1294c9a7, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a47b7c3a26b94a4fb697d2d1294c9a7, type: 2}
