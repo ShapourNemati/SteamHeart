@@ -35,7 +35,7 @@ public class Impulse : MonoBehaviour {
 	void Update () {
 		transform.position = transform.position + velocity*Time.deltaTime;
 		if (lifeCounter >= lifeSpan) {
-			ecgscreen.GetComponent <WaveManager>().ImpulseDeathNotice();
+			//ecgscreen.GetComponent <WaveManager>().ImpulseDeathNotice();
 			if (type != ImpulseType.VOID && !isConsumed) {
 				// feedback visivo pls TODO
 			}

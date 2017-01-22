@@ -32,6 +32,11 @@ public class WaveManager : MonoBehaviour {
 //	private int voidCounter;
 //	private bool heartSpawned;
 
+	public int MusicHeartBeats;
+	// Distanza in tempo tra gli impulsi
+	private float delta;
+	private float deltaCounter;
+
 	public string pattern;
 
 	void Start () {
@@ -56,6 +61,9 @@ public class WaveManager : MonoBehaviour {
 		nextImpulseIndex = 0;
 //		voidCounter = 0;
 //		heartSpawned = false;
+		delta = 60.0f / ((float) MusicHeartBeats);
+		deltaCounter = 0;
+		Debug.Log (delta);
 	}
 		
 	private void generateNextImpulse() {
@@ -116,14 +124,22 @@ public class WaveManager : MonoBehaviour {
 		nextImpulseIndex++;
 	}
 
-	// Esclude void e cuore
-	private int randomInt() {
-		return UnityEngine.Random.Range (0, Enum.GetNames (typeof(ImpulseType)).Length - 2);
+	void Update() {
+		deltaCounter += Time.deltaTime;
+		if (deltaCounter >= delta) {
+			generateNextImpulse ();
+			deltaCounter = 0;
+		}
 	}
 
-	public void ImpulseDeathNotice() {
-		generateNextImpulse ();
-	}
+	// Esclude void e cuore
+//	private int randomInt() {
+//		return UnityEngine.Random.Range (0, Enum.GetNames (typeof(ImpulseType)).Length - 2);
+//	}
+
+//	public void ImpulseDeathNotice() {
+//		generateNextImpulse ();
+//	}
 
 	public void OrganClickNotice(ImpulseType clickedType) {
 		GameObject.Find("Index").GetComponent<Index>().getCurrentImpulse().resolveImpulse(clickedType);
