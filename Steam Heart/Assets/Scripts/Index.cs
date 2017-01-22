@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Index : MonoBehaviour {
 
-	[HideInInspector]
-	public Impulse currentImpulse;
+	private Impulse currentImpulse;
 
-	void onTriggerEnter(Collider collider) {
-		currentImpulse = collider.gameObject.GetComponent<Impulse> ();
+	public Impulse getCurrentImpulse() {
+		return currentImpulse;
+	}
+
+	public void setCurrentImpulse(Impulse impulse) {
+		currentImpulse = impulse;
 	}
 }

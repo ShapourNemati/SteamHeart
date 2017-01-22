@@ -261,13 +261,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 85073897}
-  m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.41, y: 0, z: 4.91}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 1, z: 2}
   m_Children: []
   m_Father: {fileID: 1193480144}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &85073899
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -306,7 +306,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 85073897}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -885,14 +885,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a166cc4ff4643e64191c803356c28a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetHeartBeats: 0
-  currentHeartBeats: 0
-  MAX_DURATION: 120
-  currentDuration: 0
+  MIN_ACCURACY: 0.5
+  MIN_IMPULSES: 12
   totalImpulses: 0
   correctImpulses: 0
+  playerImpulses: 0
   textScore: {fileID: 1138444564}
-  hits: 
 --- !u!1 &857684222
 GameObject:
   m_ObjectHideFlags: 0
@@ -1423,12 +1421,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1193480144}
   m_Layer: 0
-  m_Name: Temporary frecciah
+  m_Name: Index
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1193480144
 Transform:
   m_ObjectHideFlags: 0
@@ -1971,28 +1969,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1abcfcf223cfef49ab7fec364f1aba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patterns:
-  - 1000
-  - 1010
-  - 1110
-  - 1111
   impulses:
-  - {fileID: 1390759173868426, guid: bdd74ac5e83667247a961583b5598e31, type: 2}
+  - {fileID: 1223140592639892, guid: 0a47b7c3a26b94a4fb697d2d1294c9a7, type: 2}
   - {fileID: 1766639540356348, guid: 7eea13e524a7da942acde443a26dfc61, type: 2}
   - {fileID: 1470822201953378, guid: d30d625141df97b40ac5d8e573499dc7, type: 2}
   - {fileID: 1228781748140180, guid: be9c25f3b881bdf4082656d29b435b56, type: 2}
+  - {fileID: 1390759173868426, guid: bdd74ac5e83667247a961583b5598e31, type: 2}
   - {fileID: 1250894760595590, guid: ac3d019d4c825e9429464d4d973fe1c8, type: 2}
-  - {fileID: 1223140592639892, guid: 0a47b7c3a26b94a4fb697d2d1294c9a7, type: 2}
-  impulsesQueue:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  battutePerTrack: 06000000060000000400000004000000
-  currentPattern: 0
-  successThreshold: 0.6
-  voidBeforeHeart: 4
+  pattern: 
 --- !u!1 &1327818697
 GameObject:
   m_ObjectHideFlags: 0

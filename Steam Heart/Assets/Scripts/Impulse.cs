@@ -49,7 +49,7 @@ public class Impulse : MonoBehaviour {
 		isConsumed = true;
 	}
 
-	public void resolveImpulse(ImpulseType clickedType, int round) {
+	public void resolveImpulse(ImpulseType clickedType) {
 		if (!isConsumed) {
 			if (clickedType == type) {
 				// feedback visivo
@@ -71,5 +71,10 @@ public class Impulse : MonoBehaviour {
 //			scoremng.IncreaseHits ();
 //			Consume ();
 //		}
+	}
+
+	void OnTriggerEnter(Collider other) {
+		if (other.name.Equals ("Index"))
+			other.GetComponent<Index> ().setCurrentImpulse (this);
 	}
 }

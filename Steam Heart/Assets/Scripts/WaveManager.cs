@@ -108,7 +108,11 @@ public class WaveManager : MonoBehaviour {
 //		}
 
 		// Nuova meccanica: seguo un pattern predefinito fino alla fine dei tempi.
-		GameObject.Instantiate(impulses[int.Parse(pattern.Substring(nextImpulseIndex,1))], spawnPoint, Quaternion.Euler(90,0,0));
+		if (nextImpulseIndex < pattern.Length) {
+			GameObject.Instantiate (impulses [int.Parse (pattern.Substring (nextImpulseIndex, 1))], spawnPoint, Quaternion.Euler (90, 0, 0));
+		} else {
+			GameObject.Instantiate (impulses [0], spawnPoint, Quaternion.Euler (90, 0, 0));
+		}
 		nextImpulseIndex++;
 	}
 
@@ -122,7 +126,6 @@ public class WaveManager : MonoBehaviour {
 	}
 
 	public void OrganClickNotice(ImpulseType clickedType) {
-//		impulsesQueue [0].GetComponent<Impulse> ().resolveImpulse (clickedType, currentPattern);
-		GameObject.Find("Index").GetComponent<Index>().currentImpulse.resolveImpulse(clickedType);
+		GameObject.Find("Index").GetComponent<Index>().getCurrentImpulse().resolveImpulse(clickedType);
 	}
 }
