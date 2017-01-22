@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4299604427234814}
   - component: {fileID: 212482115353048918}
   - component: {fileID: 114547612787968060}
-  - component: {fileID: 61652284881540448}
+  - component: {fileID: 65802684827324414}
   m_Layer: 0
   m_Name: yellow
   m_TagString: Untagged
@@ -42,20 +42,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!61 &61652284881540448
-BoxCollider2D:
+--- !u!65 &65802684827324414
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1470822201953378}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 12.15, y: 6.2300014}
+  m_Size: {x: 12.15, y: 6.2300014, z: 0.20000005}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114547612787968060
 MonoBehaviour:
   m_ObjectHideFlags: 1
