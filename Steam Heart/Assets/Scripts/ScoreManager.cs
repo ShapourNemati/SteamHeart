@@ -53,7 +53,7 @@ public class ScoreManager : MonoBehaviour {
 		if (totalImpulses == 0) {
 			textScore.GetComponent<Text> ().text = "";
 		} else {
-			textScore.GetComponent<Text> ().text = "Accuracy: " + correctImpulses / totalImpulses;
+			textScore.GetComponent<Text> ().text = "Accuracy: " + (float) ((float) correctImpulses /(float)  totalImpulses) * (float) 100 + "%";
 		}
 	}
 }
