@@ -500,7 +500,7 @@ GameObject:
   - component: {fileID: 482197638}
   - component: {fileID: 482197637}
   - component: {fileID: 482197636}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cuore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
