@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using AssemblyCSharp;
 
 public class Index : MonoBehaviour {
 
@@ -11,6 +12,11 @@ public class Index : MonoBehaviour {
 	}
 
 	public void setCurrentImpulse(Impulse impulse) {
+		if (currentImpulse != null) {
+			if (!currentImpulse.isConsumed && currentImpulse.type != ImpulseType.VOID) {
+				GameObject.Find ("ScoreManager").GetComponent<ScoreManager> ().Miss ();
+			}
+		}
 		currentImpulse = impulse;
 	}
 }

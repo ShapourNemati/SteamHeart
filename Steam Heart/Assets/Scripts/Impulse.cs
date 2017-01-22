@@ -16,7 +16,8 @@ public class Impulse : MonoBehaviour {
 	public float lifeSpan = 0;
 	private float lifeCounter;
 
-	private bool isConsumed;
+	[HideInInspector]
+	public bool isConsumed;
 
 	void Awake() {
 		ecgscreen = GameObject.Find("ECGScreen");
@@ -37,7 +38,6 @@ public class Impulse : MonoBehaviour {
 			ecgscreen.GetComponent <WaveManager>().ImpulseDeathNotice();
 			if (type != ImpulseType.VOID && !isConsumed) {
 				// feedback visivo pls TODO
-				scoremng.Miss ();
 			}
 			GameObject.Destroy(gameObject);
 		} else {
