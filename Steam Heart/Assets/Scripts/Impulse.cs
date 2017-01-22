@@ -37,7 +37,7 @@ public class Impulse : MonoBehaviour {
 			ecgscreen.GetComponent <WaveManager>().ImpulseDeathNotice();
 			if (type != ImpulseType.VOID && !isConsumed) {
 				// feedback visivo pls TODO
-				scoremng.DecreaseScore ();
+				scoremng.Miss ();
 			}
 			GameObject.Destroy(gameObject);
 		} else {
@@ -57,12 +57,12 @@ public class Impulse : MonoBehaviour {
 				Consume();
 			} else {
 				// qualche feedback visivo non sarebbe male TODO
-				scoremng.DecreaseScore ();
+				scoremng.Miss ();
 				Consume ();
 			}
 		} else {
 			// anche qui, feedback visivo pls TODO
-			scoremng.DecreaseScore ();
+			scoremng.Miss ();
 		}
 
 		/* Versione senza lo score: */

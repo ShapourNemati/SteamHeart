@@ -108,9 +108,7 @@ public class WaveManager : MonoBehaviour {
 //		}
 
 		// Nuova meccanica: seguo un pattern predefinito fino alla fine dei tempi.
-
-		GameObject o;
-		o = GameObject.Instantiate(impulses[int.Parse(pattern.Substring(nextImpulseIndex,1))], spawnPoint, Quaternion.Euler(90,0,0));
+		GameObject.Instantiate(impulses[int.Parse(pattern.Substring(nextImpulseIndex,1))], spawnPoint, Quaternion.Euler(90,0,0));
 		nextImpulseIndex++;
 	}
 
