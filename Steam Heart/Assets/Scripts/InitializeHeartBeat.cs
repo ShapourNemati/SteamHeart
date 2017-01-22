@@ -23,7 +23,7 @@ public class InitializeHeartBeat : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		beatDuration += Time.deltaTime;
-		if (Input.GetButtonDown ("Beat") && (currentBeats < NUMBER_OF_BEATS) ) {
+		if ( (Input.GetButtonDown ("Beat") || (Input.GetMouseButtonDown (0)))&& (currentBeats < NUMBER_OF_BEATS) ) {
 			GameObject.Instantiate (heartBeat);
 			times [currentBeats] = beatDuration;
 			beatDuration = 0;
