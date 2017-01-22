@@ -18,6 +18,8 @@ public class ScoreManager : MonoBehaviour {
 		UpdateText ();
 	}
 
+
+
 	public void Hit()
 	{
 		totalImpulses++;

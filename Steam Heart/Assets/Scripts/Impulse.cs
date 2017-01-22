@@ -54,15 +54,14 @@ public class Impulse : MonoBehaviour {
 			if (clickedType == type) {
 				// feedback visivo
 				scoremng.Hit();
-				Consume();
 			} else {
 				// qualche feedback visivo non sarebbe male TODO
 				scoremng.Miss ();
-				Consume ();
 			}
+			Consume();
 		} else {
 			// anche qui, feedback visivo pls TODO
-			scoremng.Miss ();
+			//scoremng.Miss ();
 		}
 
 		/* Versione senza lo score: */
