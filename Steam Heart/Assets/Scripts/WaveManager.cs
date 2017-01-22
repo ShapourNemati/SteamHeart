@@ -123,6 +123,6 @@ public class WaveManager : MonoBehaviour {
 
 	public void OrganClickNotice(ImpulseType clickedType) {
 //		impulsesQueue [0].GetComponent<Impulse> ().resolveImpulse (clickedType, currentPattern);
-		// Usiamo la freccia TODO
+		GameObject.Find("Index").GetComponent<Index>().currentImpulse.resolveImpulse(clickedType);
 	}
 }
