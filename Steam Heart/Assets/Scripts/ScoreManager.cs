@@ -32,6 +32,9 @@ public class ScoreManager : MonoBehaviour {
 	}
 
 	public float getAccuracy() {
+		if (totalImpulses == 0) {
+			return 1;
+		}
 		return correctImpulses / totalImpulses;
 	}
 
@@ -47,6 +50,10 @@ public class ScoreManager : MonoBehaviour {
 
 	void UpdateText ()
 	{
-		textScore.GetComponent<Text> ().text = "Accuracy: " + correctImpulses / totalImpulses;
+		if (totalImpulses == 0) {
+			textScore.GetComponent<Text> ().text = "";
+		} else {
+			textScore.GetComponent<Text> ().text = "Accuracy: " + correctImpulses / totalImpulses;
+		}
 	}
 }
