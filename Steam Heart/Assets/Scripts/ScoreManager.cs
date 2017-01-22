@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour {
 	public float MIN_ACCURACY = 0.5f;
 	public int MIN_IMPULSES = 12;
 	public int totalImpulses, correctImpulses;
+	public int playerImpulses;
 
 	public GameObject textScore;
 
