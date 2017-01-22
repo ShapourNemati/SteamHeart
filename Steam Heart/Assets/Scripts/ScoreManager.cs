@@ -5,31 +5,47 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour {
 
+	public float MIN_ACCURACY = 0.5f;
+	public int MIN_IMPULSES = 12;
 	public int totalImpulses, correctImpulses;
 
 	public GameObject textScore;
 
 	void Start () {
-		currentDuration = 0;
 		totalImpulses = 0;
 		correctImpulses = 0;
-		textScore.GetComponent<Text> ().text = "Score: " + currentHeartBeats + "/" + targetHeartBeats;
+		UpdateText ();
 	}
 
 	public void Hit()
 	{
 		totalImpulses++;
 		correctImpulses++;
-		textScore.GetComponent<Text> ().text = "Accuracy: " + correctImpulses/totalImpulses;
+		UpdateText ();
 	}
 
 	public void Miss()
 	{
 		totalImpulses++;
-		textScore.GetComponent<Text> ().text = "Accuracy: " + correctImpulses/totalImpulses;
+		UpdateText ();
 	}
 
-	public float getAccuracy(int round) {
+	public float getAccuracy() {
 		return correctImpulses / totalImpulses;
+	}
+
+	void Update()
+	{
+		if ( (getAccuracy () < MIN_ACCURACY) &&
+			(totalImpulses > MIN_IMPULSES))
+			{
+			Application.Quit ();
+			//TODO: animazione finale
+		}
+	}
+
+	void UpdateText ()
+	{
+		textScore.GetComponent<Text> ().text = "Accuracy: " + correctImpulses / totalImpulses;
 	}
 }
